@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:hello_world}",
+            "name": "Debug hello_world",
+            "target": "hello_world",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug hello_world"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:hello_world}",
+            "name": "Release hello_world",
+            "target": "hello_world",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release hello_world"
+        }
+    ]
+}
