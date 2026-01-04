@@ -1,4 +1,4 @@
-# gRPC hello‑world
+# gRPC hello‑world-streaming
 A minimal, clean Swift gRPC project containing both a server and a client.
 The example demonstrates how to define a .proto service, generate Swift gRPC code, implement the server logic, and call the RPCs from a client executable.
 
@@ -33,7 +33,10 @@ package hello;
 service HelloService {
     // SayHello takes a HelloRequest and returns a HelloReply.
     rpc SayHello(HelloRequest) returns (HelloReply);
+    // Today takes a TodayRequest and returns a TodayReply.
     rpc Today(TodayRequest) returns (TodayReply);
+    // The server sends a stream of StatusUpdate messages back to the client.
+    rpc StreamStatus(StatusRequest) returns (stream StatusUpdate);
 }
 
 // HelloRequest represents the input message sent by the client.
@@ -53,6 +56,14 @@ message TodayRequest {}
 message TodayReply {
     string message = 1; // The name of the day.
 }
+
+// Empty request message
+message StatusRequest {}
+
+// Each streamed update from the server
+message StatusUpdate {
+    string message = 1;
+}
 ```
 
 ## Running the Example
@@ -70,4 +81,8 @@ $ swift run client --name World
 #### Ask for today:
 ```
 $ swift run client --today
+```
+#### Streaming:
+```
+$ swift run client --stream
 ```
