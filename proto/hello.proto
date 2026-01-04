@@ -1,0 +1,28 @@
+edition = "2023";
+
+// Define the package namespace for generated code.
+package hello;
+
+service HelloService {
+    // SayHello takes a HelloRequest and returns a HelloReply.
+    rpc SayHello(HelloRequest) returns (HelloReply);
+    rpc Today(TodayRequest) returns (TodayReply);
+}
+
+// HelloRequest represents the input message sent by the client.
+message HelloRequest {
+    string name = 1; // The name to include in the greeting.
+}
+
+// HelloReply represents the response message returned by the server.
+message HelloReply {
+    string message = 1; // The greeting text returned to the client.
+}
+
+// TodayRequest is empty request
+message TodayRequest {}
+
+// TodayReply represents the response message returned by the server.
+message TodayReply {
+    string message = 1; // The name of the day.
+}
