@@ -1,0 +1,18 @@
+edition = "2023";
+
+// Define the package namespace for generated code.
+package hello;
+
+service UploadService {
+  // Client sends multiple Chunk messages → server returns one UploadSummary
+  rpc SendChunks(stream Chunk) returns (UploadSummary);
+}
+
+message Chunk {
+  bytes data = 1;
+}
+
+message UploadSummary {
+  int32 total_chunks = 1;
+  int64 total_bytes = 2;
+}
