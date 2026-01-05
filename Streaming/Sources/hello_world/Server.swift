@@ -25,23 +25,7 @@ struct Server: AsyncParsableCommand {
     }
 }
 
-struct HelloServiceHandler: Hello_HelloService.SimpleServiceProtocol {
-    func sayHello(request: Hello_HelloRequest, context: ServerContext) async throws -> Hello_HelloReply {
-        var reply = Hello_HelloReply()
-        let recipient = request.name.isEmpty ? "stranger" : request.name
-        reply.message = "Hello, \(recipient)!"
-        return reply
-    }
-
-    func today(request: Hello_TodayRequest, context: ServerContext) async throws -> Hello_TodayReply {
-        var reply = Hello_TodayReply()
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE"
-        reply.message = "Today is \(formatter.string(from: date))."
-        return reply
-    }
-
+struct HelloServiceHandler: Hello_StreamingService.SimpleServiceProtocol {
     func streamStatus(request: Hello_StatusRequest, response: RPCWriter<Hello_StatusUpdate>, context: ServerContext) async throws {
         for i in 1...5 {
             var update = Hello_StatusUpdate()

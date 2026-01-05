@@ -9,7 +9,7 @@ The example demonstrates how to define a .proto service, generate Swift gRPC cod
 ├── Package.resolved
 ├── Package.swift
 ├── proto
-│   └── hello.proto
+│   └── streaming.proto
 ├── README.md
 └── Sources
     └── hello_world
@@ -30,31 +30,9 @@ edition = "2023";
 // Define the package namespace for generated code.
 package hello;
 
-service HelloService {
-    // SayHello takes a HelloRequest and returns a HelloReply.
-    rpc SayHello(HelloRequest) returns (HelloReply);
-    // Today takes a TodayRequest and returns a TodayReply.
-    rpc Today(TodayRequest) returns (TodayReply);
+service StreamingService {
     // The server sends a stream of StatusUpdate messages back to the client.
     rpc StreamStatus(StatusRequest) returns (stream StatusUpdate);
-}
-
-// HelloRequest represents the input message sent by the client.
-message HelloRequest {
-    string name = 1; // The name to include in the greeting.
-}
-
-// HelloReply represents the response message returned by the server.
-message HelloReply {
-    string message = 1; // The greeting text returned to the client.
-}
-
-// TodayRequest is empty request
-message TodayRequest {}
-
-// TodayReply represents the response message returned by the server.
-message TodayReply {
-    string message = 1; // The name of the day.
 }
 
 // Empty request message
@@ -74,15 +52,7 @@ $ swift run hello_world server
 ```
 
 ### 2. Run the client
-#### Hello:
-```
-$ swift run client --name World
-```
-#### Ask for today:
-```
-$ swift run client --today
-```
 #### Streaming:
 ```
-$ swift run client --stream
+$ swift run client
 ```

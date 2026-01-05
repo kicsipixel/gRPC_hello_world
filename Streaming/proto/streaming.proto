@@ -1,0 +1,17 @@
+edition = "2023";
+
+// Define the package namespace for generated code.
+package hello;
+
+service StreamingService {
+    // The server sends a stream of StatusUpdate messages back to the client.
+    rpc StreamStatus(StatusRequest) returns (stream StatusUpdate);
+}
+
+// Empty request message
+message StatusRequest {}
+
+// Each streamed update from the server
+message StatusUpdate {
+    string message = 1;
+}
