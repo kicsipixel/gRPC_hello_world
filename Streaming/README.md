@@ -5,7 +5,6 @@ The example demonstrates how to define a .proto service, generate Swift gRPC cod
 ## Project structure
 ```
 .
-├── hello_world.paw
 ├── Package.resolved
 ├── Package.swift
 ├── proto
@@ -15,8 +14,8 @@ The example demonstrates how to define a .proto service, generate Swift gRPC cod
     └── hello_world
         ├── Client.swift
         ├── Generated
-        │   ├── hello.grpc.swift
-        │   └── hello.pb.swift
+        │   ├── streaming.grpc.swift
+        │   └── streaming.pb.swift
         ├── hello_world.swift
         └── Server.swift
 ```

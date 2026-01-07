@@ -13,7 +13,7 @@ struct Server: AsyncParsableCommand {
                 address: .ipv4(host: "127.0.0.1", port: 31415),
                 transportSecurity: .plaintext
             ),
-            services: [HelloServiceHandler()]
+            services: [StreamingServiceHandler()]
         )
 
         try await withThrowingDiscardingTaskGroup { group in
@@ -25,7 +25,7 @@ struct Server: AsyncParsableCommand {
     }
 }
 
-struct HelloServiceHandler: Hello_StreamingService.SimpleServiceProtocol {
+struct StreamingServiceHandler: Hello_StreamingService.SimpleServiceProtocol {
     func streamStatus(request: Hello_StatusRequest, response: RPCWriter<Hello_StatusUpdate>, context: ServerContext) async throws {
         for i in 1...5 {
             var update = Hello_StatusUpdate()
