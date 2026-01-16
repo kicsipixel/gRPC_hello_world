@@ -1,0 +1,17 @@
+edition = "2023";
+
+package hello;
+
+service UploadService {
+  // Bidirectional streaming: client streams Chunk, server streams UploadSummary
+  rpc SendChunks(stream Chunk) returns (stream UploadSummary);
+}
+
+message Chunk {
+  bytes data = 1;
+}
+
+message UploadSummary {
+  int32 total_chunks = 1;
+  int64 total_bytes = 2;
+}
